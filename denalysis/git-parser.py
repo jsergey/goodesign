@@ -2,11 +2,17 @@ import re
 
 from calendar import monthrange
 from datetime import datetime, timedelta
-
+from denalysis.parsers import git
 
 #git log --all --numstat --date=short --pretty=format:'--%h--%ad--%aN' --no-renames
 file = open("test.log", "r", encoding="UTF-8")
 lines = file.read().split("\n")
+
+parser = git.GitParser(lines)
+commits = parser.parse()
+
+for commit in commits:
+    print(commit)
 
 commits = []
 changes = []
@@ -72,8 +78,8 @@ def monthdelta(d1, d2):
             break
     return delta
 
-for entry in aging.keys():
-    print(entry + '\t\t' + str(1+monthdelta(aging[entry],datetime.date(datetime.today()))))
+#for entry in aging.keys():
+#    print(entry + '\t\t' + str(1+monthdelta(aging[entry],datetime.date(datetime.today()))))
 
 # [entry
 #  [revision]
