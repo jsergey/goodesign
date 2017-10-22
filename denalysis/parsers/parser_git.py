@@ -1,16 +1,17 @@
 import re
 
-class GitParser:
+from denalysis.parsers.parser import Parser
+
+
+class GitParser(Parser):
 
     def __init__(self, data):
-        self.data = data
+        Parser.__init__(self, data)
 
     def parse(self):
         commits = []
         changes = []
         commit = {}
-
-        authors = set([])
 
         for nextLine in self.data:
             if nextLine == '' or nextLine == '\n':
@@ -25,7 +26,6 @@ class GitParser:
                 commit['rev'] = m.group(1)
                 commit['date'] = m.group(2)
                 commit['author'] = m.group(3)
-                authors.add(commit['author'])
             else:
                 m = re.compile('(\d*)\s*(\d*)\s*(.*)').match(nextLine)
                 changes.append({'file': m.group(3), 'added': m.group(1), 'deleted': m.group(2)})
