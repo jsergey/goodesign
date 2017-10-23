@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 class Commit:
 
     files = set([])
@@ -27,6 +28,7 @@ class Commit:
         for file in self.files:
             string += '\t' + format(file)
         return string
+
 
 class CommittedFile:
     def __init__(self, name, lines_added, lines_removed):
