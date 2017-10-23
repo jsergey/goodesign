@@ -9,14 +9,14 @@ class CodeAge:
     def code_age(self):
         aging = {}
         for commit in self.data:
-            for entry in commit['changes']:
-                if (entry['file'] in aging.keys()):
-                    current = aging[entry['file']]
-                    found = datetime.strptime(commit['date'], "%Y-%m-%d").date()
-                    if (found > current):
-                        aging[entry['file']] = found
+            for entry in commit.get_files():
+                if entry in aging.keys():
+                    current = aging[entry.get_name()]
+                    found = commit.date
+                    if found > current:
+                        aging[entry.get_name()] = found
                 else:
-                    aging[entry['file']] = datetime.strptime(commit['date'], "%Y-%m-%d").date()
+                    aging[entry.get_name()] = commit.date
 
         for entry in aging.keys():
             aging[entry] = str(1+CodeAge.monthdelta(aging[entry],datetime.date(datetime.today())))
