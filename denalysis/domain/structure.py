@@ -11,8 +11,8 @@ class Commit:
         self.date = datetime.strptime(date, "%Y-%m-%d").date()
         self.files = set([])
 
-    def add_committed_file(self, committed_file):
-        self.files.add(committed_file)
+    def add_file(self, file):
+        self.files.add(file)
 
     def have_files(self):
         return len(self.files) > 0

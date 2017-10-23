@@ -20,6 +20,6 @@ class GitParser():
                 commit.set_data(m.group(3), m.group(1), m.group(2))
             else:
                 m = re.compile('(\d*)\s*(\d*)\s*(.*)').match(nextLine)
-                commit.add_committed_file(CommittedFile(m.group(3), m.group(1), m.group(2)))
+                commit.add_file(CommittedFile(m.group(3), m.group(1), m.group(2)))
 
         return commits
