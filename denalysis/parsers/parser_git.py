@@ -1,12 +1,9 @@
 import re
 
-from denalysis.parsers.parser import Parser
 
-
-class GitParser(Parser):
-
+class GitParser():
     def __init__(self, data):
-        Parser.__init__(self, data)
+        self.data = data
 
     def parse(self):
         commits = []
