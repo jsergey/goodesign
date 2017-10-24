@@ -13,7 +13,7 @@ class GitParser():
             if nextLine == '' or nextLine == '\n':
                 pass
             elif bool(re.match('--', nextLine, re.IGNORECASE)):
-                if(commit.have_files()):
+                if commit.have_files():
                     commits.append(commit)
                     commit = Commit()
                 m = re.compile('--(.*)--(.*)--(.*)').match(nextLine)
@@ -21,5 +21,8 @@ class GitParser():
             else:
                 m = re.compile('(\d*)\s*(\d*)\s*(.*)').match(nextLine)
                 commit.add_file(CommittedFile(m.group(3), m.group(1), m.group(2)))
+
+        if commit.have_files():
+            commits.append(commit)
 
         return commits
