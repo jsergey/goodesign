@@ -5,13 +5,13 @@ class Authors:
     def count_authors(self):
         authors = set([])
         for entry in self.commits:
-            authors.add(entry.get_author())
+            authors.add(entry.author)
         return len(authors)
 
     def count_authors_by_files(self):
         number_of_authors = {}
         for commit in self.commits:
-            author = commit.get_author()
+            author = commit.author
             for entry in commit.get_files():
                 file = entry.get_name()
                 if file in number_of_authors.keys():
