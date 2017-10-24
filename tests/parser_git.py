@@ -5,20 +5,20 @@ from denalysis.parsers.parser_git import GitParser
 
 class TestGitParser(unittest.TestCase):
     def test_alone_commit_count(self):
-        data = ['--2a40d01--2017-07-30--Adam Tornhill', '1	1	README.md', ]
+        data = ['--2a40d01--2017-07-30--Sergey', '1	1	README.md', ]
         self.assertEqual(len(GitParser(data).parse()), 1)
 
     def test_two_commits_count(self):
-        data = ['--2a40d01--2017-07-30--Adam Tornhill', '1	1	README.md',
-                '--2a40d01--2017-07-30--Adam Tornhill', '1	1	README2.md']
+        data = ['--2a40d01--2017-07-30--Sergey', '1	1	README.md',
+                '--2a40d01--2017-07-30--Sergey', '1	1	README2.md']
         self.assertEqual(len(GitParser(data).parse()), 2)
 
     def test_alone_commit_data(self):
-        data = ['--2a40d01--2017-07-30--Adam Tornhill', '1	1	README.md', ]
+        data = ['--2a40d01--2017-07-30--Sergey', '1	1	README.md', ]
 
         commit = GitParser(data).parse()[0]
 
-        self.assertEqual(commit.author, 'Adam Tornhill')
+        self.assertEqual(commit.author, 'Sergey')
         self.assertEqual(commit.rev, '2a40d01')
         self.assertEqual(commit.date, datetime.strptime('2017-07-30', "%Y-%m-%d").date())
 
