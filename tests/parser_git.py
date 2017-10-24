@@ -28,3 +28,9 @@ class TestGitParser(unittest.TestCase):
         self.assertEqual(file.name, 'README.md')
         self.assertEqual(file.lines_added, '1')
         self.assertEqual(file.lines_removed, '1')
+
+    def test_empty_commit_doesnt_count(self):
+        data = ['--2a40d01--2017-07-30--Sergey', '1	1	README.md',
+                '--2a40d21--2017-07-22--Sergey',
+                '--2a40d31--2017-07-23--Sergey']
+        self.assertEqual(len(GitParser(data).parse()), 1)
