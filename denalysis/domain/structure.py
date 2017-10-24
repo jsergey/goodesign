@@ -11,17 +11,14 @@ class Commit:
         self.date = datetime.strptime(date, "%Y-%m-%d").date()
         self.files = set([])
 
-    def add_file(self, file):
-        self.files.add(file)
+    def add_file(self, committed_file):
+        self.files.add(committed_file)
 
     def have_files(self):
         return len(self.files) > 0
 
     def get_files(self):
         return self.files
-
-    def get_author(self):
-        return self.author
 
     def __str__(self):
         string = self.author + '\t' + self.rev + '\t' + str(self.date) + '\n'
