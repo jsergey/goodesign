@@ -1,4 +1,4 @@
-from denalysis.parsers.parser_git import GitParser
+from denalysis.db_version.git_parser import GitParser
 from denalysis.analysis.code_age import CodeAge
 from denalysis.analysis.authors import Authors
 import logging
@@ -29,7 +29,8 @@ print("\n--------\n Num of authors")
 
 authors_to_files = authors.count_authors_by_files()
 for entry in authors_to_files.keys():
-    print (entry + '\t\t' + str(len(authors_to_files[entry])) + '\t' + str(authors_to_files[entry]))
+    print ('%-60s {%2s} {%2s}' % (entry, str(len(authors_to_files[entry])),str(authors_to_files[entry])))
+    #print (entry + '\t\t' + str(len(authors_to_files[entry])) + '\t' + str(authors_to_files[entry]))
 
 
 # [entry

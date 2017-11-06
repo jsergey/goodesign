@@ -1,5 +1,6 @@
 from plotly import __version__
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
-from plotly.graph_objs import Scatter, Figure, Layout
+from plotly.graph_objs import Heatmap
 
-plot([Scatter(x=[1, 2, 3], y=[3, 1, 6])])
+
+plot([Heatmap(z=[[1, 2, 3, 4],[5,6,7,8]])])
