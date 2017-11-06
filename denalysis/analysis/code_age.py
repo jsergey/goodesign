@@ -1,10 +1,11 @@
 from calendar import monthrange
 from datetime import datetime, timedelta
-
+import logging
 
 class CodeAge:
     def __init__(self, data):
         self.data = data
+        logging.debug("CodeAge data injected: \n" + data)
 
     def code_age(self):
         aging = {}

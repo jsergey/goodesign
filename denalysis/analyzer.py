@@ -1,6 +1,10 @@
 from denalysis.parsers.parser_git import GitParser
 from denalysis.analysis.code_age import CodeAge
 from denalysis.analysis.authors import Authors
+import logging
+import sys
+
+logging.basicConfig(level = logging.DEBUG, stream=sys.stdout)
 
 #git log --all --numstat --date=short --pretty=format:'--%h--%ad--%aN' --no-renames
 file = open("../test.log", "r", encoding="UTF-8")
